@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>首页</title>
+  <link rel="stylesheet" href="./sy.css">
+  <!-- <script src="https://unpkg.com/vue"></script> -->
+  <script src="./vue.min.js"></script>
+</head>
+
+<body style="overflow:hidden">
+  <div id="app">
+    <div class="wape">
+      <div class="conett">
+        <ul class="sd">
+          <li class="as" v-trigger="index" v-for="(item,index) of Object.keys(items)" @click="hanclick(item)">
+            {{items[item]}}</li>
+        </ul>
+      </div>
+      <div v-for="(title,index) of test">
+        <div :class="[title.sstt+index, isShowItem ? ('active' + index) : 'default']">
+          <img class="mq-q" :src=title.urlimg>
+          <p class="mq-p">{{title.name}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        isShowItem: false,
+        items: {
+          text1: "信息中心",
+          text2: "校务中心",
+          text3: "安全中心",
+          text4: "财务中心",
+        },
+        test: [],
+        testss: [],
+        text1: [
+          { name: '学校管理', urlimg: '房子.png', sstt: 'ss' },
+          { name: '职工管理', urlimg: '人物-人.png', sstt: 'ss' },
+          { name: '学生管理', urlimg: '人员.png', sstt: 'ss' },
+          { name: '班级管理', urlimg: '课本.png', sstt: 'ss' },
+          { name: '课程管理', urlimg: '课程.png', sstt: 'ss' },
+          { name: '科目管理', urlimg: '分支.png', sstt: 'ss' }
+        ],
+        text2: [
+          { name: '宿舍管理', urlimg: '人员.png', sstt: 'ss' },
+          { name: '教室管理', urlimg: '人物-人.png', sstt: 'ss' },
+          { name: '课堂管理', urlimg: '课程.png', sstt: 'ss' },
+          { name: 'xaioyuan', urlimg: '课本.png', sstt: 'ss' },
+          { name: 'xaioyuan', urlimg: '人物-人.png', sstt: 'ss' },
+          { name: 'xaioyuan', urlimg: '人物-人.png', sstt: 'ss' }
+        ],
+        text4: [
+          { name: '宿舍管理', urlimg: '人员.png', sstt: 'ss' },
+          { name: '教室管理', urlimg: '课程.png', sstt: 'ss' },
+          { name: '课堂管理', urlimg: '分支.png', sstt: 'ss' },
+        ],
+        text3: [
+          { name: '宿舍管理', urlimg: '课程.png', sstt: 'ss' },
+          { name: '教室管理', urlimg: '人员.png', sstt: 'ss' },
+          { name: '课堂管理', urlimg: '课程.png', sstt: 'ss' },
+          { name: 'xaioyuan', urlimg: '分支.png', sstt: 'ss' },
+          { name: 'xaioyuan', urlimg: '人物-人.png', sstt: 'ss' }
+        ]
+      },
+      created() {
+        // this.hanclick(item)
+      },
+      directives: {
+        trigger: {
+          inserted(el, binding, index) {
+            if (binding.value === 0) {
+              el.click()
+            }
+          }
+        }
+      },
+      methods: {
+        hanclick(item) {
+          console.log(event.currentTarget); // event.currentTarget获取当前点击元素DOM
+          console.log(item);
+          this.isShowItem = false;
+          this.isShowItem = true;
+          this.test = this[item];
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
